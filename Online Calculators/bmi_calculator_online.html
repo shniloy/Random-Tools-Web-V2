@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BMI Calculator - Random Tools Web</title>
+
+<!-- Favicon -->
+<link rel="apple-touch-icon" sizes="180x180" href="../favicon-rtw/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-rtw/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-rtw/favicon-16x16.png">
+<link rel="manifest" href="../favicon-rtw/site.webmanifest">
+
+<!-- SEO Meta Tags -->
+<meta name="description" content="Free BMI calculator to calculate your Body Mass Index. Get instant BMI results with health category classification.">
+<meta name="keywords" content="BMI calculator, body mass index, health calculator, weight calculator, BMI tool">
+<meta name="author" content="Shoyaeb Hosen Niloy">
+
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    primary: {
+                        50: '#eff6ff',
+                        100: '#dbeafe',
+                        200: '#bfdbfe',
+                        300: '#93c5fd',
+                        400: '#60a5fa',
+                        500: '#3b82f6',
+                        600: '#2563eb',
+                        700: '#1d4ed8',
+                        800: '#1e40af',
+                        900: '#1e3a8a',
+                    }
+                }
+            }
+        }
+    }
+</script>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <a href="../index.html" class="flex items-center space-x-2 text-gray-600 hover:text-blue-600 transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                        </svg>
+                        <span>Back to Home</span>
+                    </a>
+                </div>
+                <div class="text-center">
+                    <h1 class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                        Random Tools Web
+                    </h1>
+                    <p class="text-sm text-gray-500">BMI Calculator</p>
+                </div>
+                <div class="w-20"></div> <!-- Spacer for centering -->
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-2xl mx-auto px-4 py-12">
+        <div class="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
+            <div class="text-center mb-8">
+                <div class="w-16 h-16 bg-gradient-to-r from-green-500 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                    </svg>
+                </div>
+                <h2 class="text-3xl font-bold text-gray-900 mb-2">BMI Calculator</h2>
+                <p class="text-gray-600">Calculate your Body Mass Index and health category</p>
+            </div>
+
+            <form class="space-y-6" onsubmit="calculateBMI(); return false;">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="weight" class="block text-sm font-medium text-gray-700 mb-2">
+                            Weight (kg)
+                        </label>
+                        <input type="number" id="weight" step="0.1" min="1" max="500" 
+                               class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                               placeholder="Enter your weight" required>
+                    </div>
+                    <div>
+                        <label for="height" class="block text-sm font-medium text-gray-700 mb-2">
+                            Height (cm)
+                        </label>
+                        <input type="number" id="height" step="0.1" min="50" max="300" 
+                               class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                               placeholder="Enter your height" required>
+                    </div>
+                </div>
+
+                <button type="submit" 
+                        class="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold py-4 px-6 rounded-xl hover:from-blue-600 hover:to-purple-700 transition-all duration-200 transform hover:scale-105 active:scale-95">
+                    Calculate BMI
+                </button>
+            </form>
+
+            <!-- Results Section -->
+            <div id="result" class="mt-8 hidden">
+                <div class="bg-gray-50 rounded-xl p-6 border border-gray-200">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Your BMI Results</h3>
+                    <div id="bmiValue" class="text-3xl font-bold text-center mb-4"></div>
+                    <div id="bmiCategory" class="text-center mb-4"></div>
+                    <div id="bmiDescription" class="text-sm text-gray-600 text-center"></div>
+                </div>
+            </div>
+
+            <!-- BMI Categories Info -->
+            <div class="mt-8 bg-blue-50 rounded-xl p-6 border border-blue-200">
+                <h3 class="text-lg font-semibold text-blue-900 mb-4">BMI Categories</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                    <div class="flex items-center justify-between">
+                        <span class="text-blue-800">Underweight</span>
+                        <span class="font-semibold text-blue-600">&lt; 18.5</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-green-800">Normal weight</span>
+                        <span class="font-semibold text-green-600">18.5 - 24.9</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-yellow-800">Overweight</span>
+                        <span class="font-semibold text-yellow-600">25.0 - 29.9</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-red-800">Obese</span>
+                        <span class="font-semibold text-red-600">≥ 30.0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-gray-400">
+                &copy; 2024 Random Tools Web. All rights reserved. Crafted with ❤️ by Shoyaeb Hosen Niloy.
+            </p>
+            <div class="mt-4">
+                <a href="../index.html" class="text-blue-400 hover:text-blue-300 transition-colors">
+                    ← Back to Home
+                </a>
+            </div>
+        </div>
+    </footer>
+    <script>
+        function calculateBMI() {
+            const weight = parseFloat(document.getElementById("weight").value);
+            const height = parseFloat(document.getElementById("height").value) / 100; // convert height to meters
+            
+            if (isNaN(weight) || isNaN(height) || weight <= 0 || height <= 0) {
+                alert("Please enter valid weight and height values.");
+                return;
+            }
+
+            const bmi = weight / (height * height);
+            const bmiRounded = bmi.toFixed(1);
+            
+            let category = "";
+            let categoryColor = "";
+            let description = "";
+            
+            if (bmi < 18.5) {
+                category = "Underweight";
+                categoryColor = "text-blue-600";
+                description = "You may need to gain weight. Consider consulting a healthcare professional.";
+            } else if (bmi < 25) {
+                category = "Normal weight";
+                categoryColor = "text-green-600";
+                description = "Great! You have a healthy weight for your height.";
+            } else if (bmi < 30) {
+                category = "Overweight";
+                categoryColor = "text-yellow-600";
+                description = "You may want to consider losing some weight for better health.";
+            } else {
+                category = "Obese";
+                categoryColor = "text-red-600";
+                description = "Consider consulting a healthcare professional for weight management.";
+            }
+
+            // Update the result display
+            document.getElementById("bmiValue").innerHTML = bmiRounded;
+            document.getElementById("bmiCategory").innerHTML = `<span class="${categoryColor} font-semibold">${category}</span>`;
+            document.getElementById("bmiDescription").innerHTML = description;
+            
+            // Show the result section
+            document.getElementById("result").classList.remove("hidden");
+            
+            // Scroll to results
+            document.getElementById("result").scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Add Enter key support
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                calculateBMI();
+            }
+        });
+    </script>
+
+</body>
+</html>

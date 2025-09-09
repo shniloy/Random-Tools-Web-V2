@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Converter Online - Random Tools Web</title>
+
+<!-- Favicon -->
+<link rel="apple-touch-icon" sizes="180x180" href="../favicon-rtw/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-rtw/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-rtw/favicon-16x16.png">
+<link rel="manifest" href="../favicon-rtw/site.webmanifest">
+
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex items-center justify-between">
+                <a href="../index.html" class="flex items-center space-x-2 text-gray-600 hover:text-blue-600 transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                    </svg>
+                    <span>Back to Home</span>
+                </a>
+                <div class="text-center">
+                    <h1 class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Random Tools Web</h1>
+                    <p class="text-sm text-gray-500">Data Converter</p>
+                </div>
+                <div class="w-20"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-md mx-auto px-4 py-12">
+        <div class="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
+            <div class="text-center mb-8">
+                <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </div>
+                <h2 class="text-3xl font-bold text-gray-900 mb-2">Data Converter</h2>
+                <p class="text-gray-600">Convert among data size units</p>
+            </div>
+
+            <div class="space-y-6">
+                <div>
+                    <label for="inputData" class="block text-sm font-medium text-gray-700 mb-2">Value</label>
+                    <input type="text" id="inputData" placeholder="Enter data to convert..."
+                           class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" />
+                </div>
+                <div>
+                    <label for="conversionType" class="block text-sm font-medium text-gray-700 mb-2">Conversion</label>
+                    <select id="conversionType" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all">
+                        <option value="b_to_kb">Bits (b) to Kilobits (Kb)</option>
+                        <option value="kb_to_mb">Kilobits (Kb) to Megabits (Mb)</option>
+                        <option value="mb_to_gb">Megabits (Mb) to Gigabits (Gb)</option>
+                        <option value="gb_to_tb">Gigabits (Gb) to Terabits (Tb)</option>
+                        <option value="tb_to_pb">Terabits (Tb) to Petabits (Pb)</option>
+                        <option value="pb_to_eb">Petabits (Pb) to Exabits (Eb)</option>
+                        <option value="eb_to_zb">Exabits (Eb) to Zettabits (Zb)</option>
+                        <option value="zb_to_yb">Zettabits (Zb) to Yottabits (Yb)</option>
+                        <option value="yb_to_kb">Yottabits (Yb) to Kibibytes (KiB)</option>
+                    </select>
+                </div>
+                <button onclick="convertData()"
+                        class="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold py-4 px-6 rounded-xl hover:from-blue-600 hover:to-purple-700 transition-all">
+                    Convert
+                </button>
+                <div id="output" class="mt-4 text-center text-gray-800 text-lg font-semibold"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-gray-400">&copy; 2024 Random Tools Web. All rights reserved.</p>
+            <div class="mt-4">
+                <a href="../index.html" class="text-blue-400 hover:text-blue-300">← Back to Home</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function convertData() {
+            var inputData = parseFloat(document.getElementById('inputData').value);
+            var conversionType = document.getElementById('conversionType').value;
+            var outputDiv = document.getElementById('output');
+            var convertedData = '';
+
+            switch (conversionType) {
+                case 'b_to_kb': convertedData = bitsToKb(inputData); break;
+                case 'kb_to_mb': convertedData = KbToMb(inputData); break;
+                case 'mb_to_gb': convertedData = MbToGb(inputData); break;
+                case 'gb_to_tb': convertedData = GbToTb(inputData); break;
+                case 'tb_to_pb': convertedData = TbToPb(inputData); break;
+                case 'pb_to_eb': convertedData = PbToEb(inputData); break;
+                case 'eb_to_zb': convertedData = EbToZb(inputData); break;
+                case 'zb_to_yb': convertedData = ZbToYb(inputData); break;
+                case 'yb_to_kb': convertedData = YbToKiB(inputData); break;
+                default: convertedData = 'Invalid Conversion';
+            }
+
+            outputDiv.innerHTML = '<h3 class="text-gray-900 font-semibold mb-1">Converted Data:</h3><p>' + convertedData + '</p>';
+        }
+        function bitsToKb(bits) { return (bits / 1024).toFixed(2) + ' Kb'; }
+        function KbToMb(kb) { return (kb / 1024).toFixed(2) + ' Mb'; }
+        function MbToGb(mb) { return (mb / 1024).toFixed(2) + ' Gb'; }
+        function GbToTb(gb) { return (gb / 1024).toFixed(2) + ' Tb'; }
+        function TbToPb(tb) { return (tb / 1024).toFixed(2) + ' Pb'; }
+        function PbToEb(pb) { return (pb / 1024).toFixed(2) + ' Eb'; }
+        function EbToZb(eb) { return (eb / 1024).toFixed(2) + ' Zb'; }
+        function ZbToYb(zb) { return (zb / 1024).toFixed(2) + ' Yb'; }
+        function YbToKiB(yb) { return (yb / 1024).toFixed(2) + ' KiB'; }
+    </script>
+</body>
+</html>

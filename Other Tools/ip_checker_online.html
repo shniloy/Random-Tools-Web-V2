@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IP Checker Online - Random Tools Web</title>
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon-rtw/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon-rtw/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon-rtw/favicon-16x16.png">
+    <link rel="manifest" href="../favicon-rtw/site.webmanifest">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex items-center justify-between">
+                <a href="../index.html" class="flex items-center space-x-2 text-gray-600 hover:text-blue-600 transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                    </svg>
+                    <span>Back to Home</span>
+                </a>
+                <div class="text-center">
+                    <h1 class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Random Tools Web</h1>
+                    <p class="text-sm text-gray-500">IP Checker</p>
+                </div>
+                <div class="w-20"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-2xl mx-auto px-4 py-12">
+        <div class="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
+            <div class="text-center mb-8">
+                <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9"></path>
+                    </svg>
+                </div>
+                <h2 class="text-3xl font-bold text-gray-900 mb-2">IP Checker</h2>
+                <p class="text-gray-600">Check your IP address and location details</p>
+            </div>
+
+            <div class="space-y-6">
+                <button id="check-ip-button" onclick="startProgress()" class="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold py-4 px-6 rounded-xl hover:from-blue-600 hover:to-purple-700 transition-all">Check My IP</button>
+                
+                <div id="progress-container" class="hidden">
+                    <div class="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+                        <div id="progress-bar" class="bg-gradient-to-r from-blue-500 to-purple-600 h-3 rounded-full transition-all duration-300 ease-out" style="width: 0%">
+                            <span id="progress-text" class="text-white text-xs font-semibold flex items-center justify-center h-full">0%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="ip-details" class="hidden space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-gray-50 p-4 rounded-xl">
+                            <p class="text-sm text-gray-600 mb-1">IP Address</p>
+                            <p class="font-semibold text-lg" id="ip">-</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-xl">
+                            <p class="text-sm text-gray-600 mb-1">City</p>
+                            <p class="font-semibold text-lg" id="city">-</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-xl">
+                            <p class="text-sm text-gray-600 mb-1">Region</p>
+                            <p class="font-semibold text-lg" id="region">-</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-xl">
+                            <p class="text-sm text-gray-600 mb-1">Country</p>
+                            <p class="font-semibold text-lg" id="country">-</p>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-xl">
+                        <p class="text-sm text-gray-600 mb-1">ISP</p>
+                        <p class="font-semibold text-lg" id="org">-</p>
+                    </div>
+                    <button id="check-again-button" class="hidden w-full bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold py-3 px-6 rounded-xl transition-all" onclick="startProgress()">Check Again</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-gray-400">&copy; 2024 Random Tools Web. All rights reserved.</p>
+            <div class="mt-4">
+                <a href="../index.html" class="text-blue-400 hover:text-blue-300">← Back to Home</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function startProgress() {
+            document.getElementById('check-ip-button').classList.add('hidden');
+            document.getElementById('check-again-button').classList.add('hidden');
+            document.getElementById('ip-details').classList.add('hidden');
+            document.getElementById('progress-container').classList.remove('hidden');
+            const progressBar = document.getElementById('progress-bar');
+            const progressText = document.getElementById('progress-text');
+            progressBar.style.width = '0%';
+
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += 1;
+                progressBar.style.width = progress + '%';
+                progressText.textContent = progress + '%';
+                if (progress >= 100) clearInterval(interval);
+            }, 25);
+
+            setTimeout(getIPDetails, 2500);
+        }
+
+        async function getIPDetails() {
+            try {
+                const response = await fetch('https://ipinfo.io/json?token=9271209ed53235');
+                const data = await response.json();
+
+                document.getElementById('ip').textContent = data.ip;
+                document.getElementById('city').textContent = data.city;
+                document.getElementById('region').textContent = data.region;
+                document.getElementById('country').textContent = data.country;
+                document.getElementById('org').textContent = data.org;
+
+                document.getElementById('progress-container').classList.add('hidden');
+                document.getElementById('ip-details').classList.remove('hidden');
+                document.getElementById('check-again-button').classList.remove('hidden');
+            } catch (error) {
+                console.error('Error fetching IP details:', error);
+            }
+        }
+    </script>
+</body>
+</html>

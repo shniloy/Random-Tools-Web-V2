@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Converter Online - Random Tools Web</title>
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon-rtw/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon-rtw/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon-rtw/favicon-16x16.png">
+    <link rel="manifest" href="../favicon-rtw/site.webmanifest">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex items-center justify-between">
+                <a href="../index.html" class="flex items-center space-x-2 text-gray-600 hover:text-blue-600 transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                    </svg>
+                    <span>Back to Home</span>
+                </a>
+                <div class="text-center">
+                    <h1 class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Random Tools Web</h1>
+                    <p class="text-sm text-gray-500">Currency Converter</p>
+                </div>
+                <div class="w-20"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-md mx-auto px-4 py-12">
+        <div class="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
+            <div class="text-center mb-8">
+                <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-3.866 0-7 2.239-7 5v2h14v-2c0-2.761-3.134-5-7-5z"></path>
+                    </svg>
+                </div>
+                <h2 class="text-3xl font-bold text-gray-900 mb-2">Currency Converter</h2>
+                <p class="text-gray-600">Live exchange rate conversion</p>
+            </div>
+
+            <div class="space-y-6">
+                <div class="currency grid grid-cols-3 gap-3 items-center">
+                    <select id="input_currency" class="col-span-1 px-3 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500">
+                        <option value="AED">AED</option>
+                        <option value="ARS">ARS</option>
+                        <option value="AUD">AUD</option>
+                        <option value="BGN">BGN</option>
+                        <option value="BRL">BRL</option>
+                        <option value="BSD">BSD</option>
+                        <option value="CAD">CAD</option>
+                        <option value="CHF">CHF</option>
+                        <option value="CLP">CLP</option>
+                        <option value="CNY">CNY</option>
+                        <option value="COP">COP</option>
+                        <option value="CZK">CZK</option>
+                        <option value="DKK">DKK</option>
+                        <option value="DOP">DOP</option>
+                        <option value="EGP">EGP</option>
+                        <option value="EUR" selected>EUR</option>
+                        <option value="FJD">FJD</option>
+                        <option value="GBP">GBP</option>
+                        <option value="GTQ">GTQ</option>
+                        <option value="HKD">HKD</option>
+                        <option value="HRK">HRK</option>
+                        <option value="HUF">HUF</option>
+                        <option value="IDR">IDR</option>
+                        <option value="ILS">ILS</option>
+                        <option value="INR">INR</option>
+                        <option value="ISK">ISK</option>
+                        <option value="JPY">JPY</option>
+                        <option value="KRW">KRW</option>
+                        <option value="KZT">KZT</option>
+                        <option value="MXN">MXN</option>
+                        <option value="MYR">MYR</option>
+                        <option value="NOK">NOK</option>
+                        <option value="NZD">NZD</option>
+                        <option value="PAB">PAB</option>
+                        <option value="PEN">PEN</option>
+                        <option value="PHP">PHP</option>
+                        <option value="PKR">PKR</option>
+                        <option value="PLN">PLN</option>
+                        <option value="PYG">PYG</option>
+                        <option value="RON">RON</option>
+                        <option value="RUB">RUB</option>
+                        <option value="SAR">SAR</option>
+                        <option value="SEK">SEK</option>
+                        <option value="SGD">SGD</option>
+                        <option value="THB">THB</option>
+                        <option value="TRY">TRY</option>
+                        <option value="TWD">TWD</option>
+                        <option value="UAH">UAH</option>
+                        <option value="USD">USD</option>
+                        <option value="UYU">UYU</option>
+                        <option value="VND">VND</option>
+                        <option value="ZAR">ZAR</option>
+                        <option value="BDT">BDT</option>
+                    </select>
+                    <input type="number" id="input_amount" value="1" class="col-span-2 px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500">
+                </div>
+
+                <div class="flex justify-center">
+                    <button id="exchange" class="w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold text-xl hover:from-blue-600 hover:to-purple-700">↕</button>
+                </div>
+
+                <div class="currency grid grid-cols-3 gap-3 items-center">
+                    <select id="output_currency" class="col-span-1 px-3 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500">
+                        <option value="AED">AED</option>
+                        <option value="ARS">ARS</option>
+                        <option value="AUD">AUD</option>
+                        <option value="BGN">BGN</option>
+                        <option value="BRL">BRL</option>
+                        <option value="BSD">BSD</option>
+                        <option value="CAD">CAD</option>
+                        <option value="CHF">CHF</option>
+                        <option value="CLP">CLP</option>
+                        <option value="CNY">CNY</option>
+                        <option value="COP">COP</option>
+                        <option value="CZK">CZK</option>
+                        <option value="DKK">DKK</option>
+                        <option value="DOP">DOP</option>
+                        <option value="EGP">EGP</option>
+                        <option value="EUR">EUR</option>
+                        <option value="FJD">FJD</option>
+                        <option value="GBP">GBP</option>
+                        <option value="GTQ">GTQ</option>
+                        <option value="HKD">HKD</option>
+                        <option value="HRK">HRK</option>
+                        <option value="HUF">HUF</option>
+                        <option value="IDR">IDR</option>
+                        <option value="ILS">ILS</option>
+                        <option value="INR">INR</option>
+                        <option value="ISK">ISK</option>
+                        <option value="JPY">JPY</option>
+                        <option value="KRW">KRW</option>
+                        <option value="KZT">KZT</option>
+                        <option value="MXN">MXN</option>
+                        <option value="MYR">MYR</option>
+                        <option value="NOK">NOK</option>
+                        <option value="NZD">NZD</option>
+                        <option value="PAB">PAB</option>
+                        <option value="PEN">PEN</option>
+                        <option value="PHP">PHP</option>
+                        <option value="PKR">PKR</option>
+                        <option value="PLN">PLN</option>
+                        <option value="PYG">PYG</option>
+                        <option value="RON">RON</option>
+                        <option value="RUB">RUB</option>
+                        <option value="SAR">SAR</option>
+                        <option value="SEK">SEK</option>
+                        <option value="SGD">SGD</option>
+                        <option value="THB">THB</option>
+                        <option value="TRY">TRY</option>
+                        <option value="TWD">TWD</option>
+                        <option value="UAH">UAH</option>
+                        <option value="USD" selected>USD</option>
+                        <option value="UYU">UYU</option>
+                        <option value="VND">VND</option>
+                        <option value="ZAR">ZAR</option>
+                        <option value="BDT">BDT</option>
+                    </select>
+                    <input type="number" id="output_amount" placeholder="0" class="col-span-2 px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500">
+                </div>
+
+                <div class="result">
+                    <div class="rate text-center text-lg font-semibold text-gray-800" id="rate"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-gray-400">&copy; 2024 Random Tools Web. All rights reserved.</p>
+            <div class="mt-4">
+                <a href="../index.html" class="text-blue-400 hover:text-blue-300">← Back to Home</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const inputCurrency = document.querySelector('#input_currency');
+        const outputCurrency = document.querySelector('#output_currency');
+        const inputAmount = document.querySelector('#input_amount');
+        const outputAmount = document.querySelector('#output_amount');
+        const exchangeButton = document.querySelector('#exchange');
+        const rateDisplay = document.querySelector('#rate');
+
+        inputCurrency.addEventListener('change', compute);
+        outputCurrency.addEventListener('change', compute);
+        inputAmount.addEventListener('input', compute);
+        outputAmount.addEventListener('input', compute);
+
+        exchangeButton.addEventListener('click', () => {
+            const temp = inputCurrency.value;
+            inputCurrency.value = outputCurrency.value;
+            outputCurrency.value = temp;
+            compute();
+        });
+
+        function compute() {
+            const inputCurrencyValue = inputCurrency.value;
+            const outputCurrencyValue = outputCurrency.value;
+
+            fetch(`https://api.exchangerate-api.com/v4/latest/${inputCurrencyValue}`)
+                .then(res => res.json())
+                .then(data => {
+                    const newRate = data.rates[outputCurrencyValue];
+                    rateDisplay.innerText = `1 ${inputCurrencyValue} = ${newRate} ${outputCurrencyValue}`;
+                    outputAmount.value = (inputAmount.value * newRate).toFixed(2);
+                });
+        }
+
+        compute();
+    </script>
+</body>
+</html>

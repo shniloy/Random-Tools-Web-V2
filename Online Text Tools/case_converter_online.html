@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Case Converter Online - Random Tools Web</title>
+
+<!-- Favicon -->
+<link rel="apple-touch-icon" sizes="180x180" href="../favicon-rtw/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-rtw/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-rtw/favicon-16x16.png">
+<link rel="manifest" href="../favicon-rtw/site.webmanifest">
+
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+  <!-- Header -->
+  <header class="bg-white shadow-sm border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <div class="flex items-center justify-between">
+        <a href="../index.html" class="flex items-center space-x-2 text-gray-600 hover:text-blue-600 transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+          </svg>
+          <span>Back to Home</span>
+        </a>
+        <div class="text-center">
+          <h1 class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Random Tools Web</h1>
+          <p class="text-sm text-gray-500">Case Converter</p>
+        </div>
+        <div class="w-20"></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-4xl mx-auto px-4 py-12">
+    <div class="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
+      <div class="text-center mb-8">
+        <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+          <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7h18M3 12h18M3 17h18"></path>
+          </svg>
+        </div>
+        <h2 class="text-3xl font-bold text-gray-900 mb-2">Case Converter</h2>
+        <p class="text-gray-600">Convert text between common case formats</p>
+      </div>
+
+      <div class="space-y-6">
+        <div>
+          <label for="inputText" class="block text-sm font-medium text-gray-700 mb-2">Input Text</label>
+          <textarea id="inputText" placeholder="Enter text..." class="w-full h-40 px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"></textarea>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          <button onclick="convertText('sentence')" class="bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold py-3 px-4 rounded-xl transition-all">Sentence Case</button>
+          <button onclick="convertText('lower')" class="bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold py-3 px-4 rounded-xl transition-all">Lower Case</button>
+          <button onclick="convertText('upper')" class="bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold py-3 px-4 rounded-xl transition-all">UPPER CASE</button>
+          <button onclick="convertText('capitalize')" class="bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold py-3 px-4 rounded-xl transition-all">Capitalized Case</button>
+          <button onclick="convertText('alternate')" class="bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold py-3 px-4 rounded-xl transition-all">aLtErNaTiNg cAsE</button>
+          <button onclick="convertText('title')" class="bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold py-3 px-4 rounded-xl transition-all">Title Case</button>
+          <button onclick="convertText('reverse')" class="bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold py-3 px-4 rounded-xl transition-all">InVeRsE CaSe</button>
+          <button onclick="copyText()" class="bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold py-3 px-4 rounded-xl hover:from-blue-600 hover:to-purple-700 transition-all">Copy</button>
+          <button onclick="downloadText()" class="bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold py-3 px-4 rounded-xl hover:from-blue-600 hover:to-purple-700 transition-all">Download</button>
+          <button onclick="clearText()" class="bg-red-500 hover:bg-red-600 text-white font-semibold py-3 px-4 rounded-xl transition-all">Clear</button>
+        </div>
+
+        <div>
+          <label for="outputText" class="block text-sm font-medium text-gray-700 mb-2">Converted Text</label>
+          <textarea id="outputText" placeholder="Converted text..." readonly class="w-full h-40 px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl"></textarea>
+        </div>
+        <button id="copyOutputButton" class="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold py-3 px-6 rounded-xl hover:from-blue-600 hover:to-purple-700 transition-all" onclick="copyOutputText()">Copy Converted Text</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-8 mt-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <p class="text-gray-400">&copy; 2024 Random Tools Web. All rights reserved.</p>
+      <div class="mt-4">
+        <a href="../index.html" class="text-blue-400 hover:text-blue-300">← Back to Home</a>
+      </div>
+    </div>
+  </footer>
+
+  <div id="popup" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+    <div class="relative bg-white rounded-2xl p-6 max-w-sm w-11/12 shadow-2xl text-center">
+      <button class="absolute top-3 right-3 text-gray-400 hover:text-gray-600" onclick="closePopup()" aria-label="Close">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+      <p>Please first convert text!</p>
+    </div>
+  </div>
+
+  <script>
+    function convertText(type) {
+      let inputText = document.getElementById('inputText').value;
+      if (inputText.trim() === "") { displayPopup(); return; }
+      let outputText = '';
+      switch (type) {
+        case 'sentence': outputText = inputText.toLowerCase().replace(/(^\s*\w|[\.\!\?]\s*\w)/g, c => c.toUpperCase()); break;
+        case 'lower': outputText = inputText.toLowerCase(); break;
+        case 'upper': outputText = inputText.toUpperCase(); break;
+        case 'capitalize': outputText = inputText.toLowerCase().replace(/(?:^|\s)\S/g, c => c.toUpperCase()); break;
+        case 'alternate': outputText = inputText.replace(/[a-zA-Z]/g, (c, i) => i % 2 === 0 ? c.toLowerCase() : c.toUpperCase()); break;
+        case 'title': outputText = inputText.toLowerCase().replace(/(^|\s)\S/g, c => c.toUpperCase()); break;
+        case 'reverse': outputText = inputText.split('').map(c => c === c.toUpperCase() ? c.toLowerCase() : c.toUpperCase()).join(''); break;
+      }
+      document.getElementById('outputText').value = outputText;
+    }
+    function copyText() {
+      let inputText = document.getElementById('inputText').value;
+      if (inputText.trim() === "") { displayPopup(); return; }
+      navigator.clipboard.writeText(inputText);
+    }
+    function copyOutputText() {
+      let outputText = document.getElementById('outputText').value;
+      if (outputText.trim() === "") { displayPopup(); return; }
+      navigator.clipboard.writeText(outputText).then(() => { showCopySuccess("copyOutputButton"); });
+    }
+    function showCopySuccess(buttonId) {
+      const button = document.getElementById(buttonId);
+      const originalText = button.innerText;
+      button.innerText = "Copied!";
+      setTimeout(() => { button.innerText = originalText; }, 2000);
+    }
+    function downloadText() {
+      let outputText = document.getElementById('outputText').value;
+      if (outputText.trim() === "") { displayPopup(); return; }
+      let blob = new Blob([outputText], { type: 'text/plain' });
+      let url = window.URL.createObjectURL(blob);
+      let a = document.createElement('a');
+      a.href = url;
+      a.download = 'converted_text_randomtoolsweb.txt';
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+    }
+    function clearText() {
+      document.getElementById('inputText').value = '';
+      document.getElementById('outputText').value = '';
+    }
+    function displayPopup() { document.getElementById("popup").classList.remove("hidden"); document.getElementById("popup").classList.add("flex"); }
+    function closePopup() { document.getElementById("popup").classList.add("hidden"); document.getElementById("popup").classList.remove("flex"); }
+  </script>
+</body>
+</html>

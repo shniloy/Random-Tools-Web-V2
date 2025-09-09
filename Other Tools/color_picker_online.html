@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Color Picker Online - Random Tools Web</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon-rtw/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-rtw/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon-rtw/favicon-16x16.png">
+  <link rel="manifest" href="../favicon-rtw/site.webmanifest">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+  <!-- Header -->
+  <header class="bg-white shadow-sm border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <div class="flex items-center justify-between">
+        <a href="../index.html" class="flex items-center space-x-2 text-gray-600 hover:text-blue-600 transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+          </svg>
+          <span>Back to Home</span>
+        </a>
+        <div class="text-center">
+          <h1 class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Random Tools Web</h1>
+          <p class="text-sm text-gray-500">Color Picker</p>
+        </div>
+        <div class="w-20"></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-md mx-auto px-4 py-12">
+    <div class="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
+      <div class="text-center mb-8">
+        <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+          <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z"></path>
+          </svg>
+        </div>
+        <h2 class="text-3xl font-bold text-gray-900 mb-2">Color Picker</h2>
+        <p class="text-gray-600">Pick and copy any color you need</p>
+      </div>
+
+      <div class="space-y-6">
+        <div>
+          <label for="colorPicker" class="block text-sm font-medium text-gray-700 mb-2">Choose Color</label>
+          <input type="color" id="colorPicker" class="w-full h-16 border-2 border-gray-300 rounded-xl cursor-pointer">
+        </div>
+        
+        <div class="color-display p-6 rounded-xl border-2 border-gray-200 text-center" id="colorDisplay">
+          <p class="text-lg font-semibold mb-2">Selected Color:</p>
+          <p class="text-2xl font-bold mb-4" id="colorValue">#000000</p>
+          <button class="copy-button w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold py-3 px-6 rounded-xl hover:from-blue-600 hover:to-purple-700 transition-all" id="copyButton">Copy Color</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-8 mt-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <p class="text-gray-400">&copy; 2024 Random Tools Web. All rights reserved.</p>
+      <div class="mt-4">
+        <a href="../index.html" class="text-blue-400 hover:text-blue-300">← Back to Home</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const colorPicker = document.getElementById('colorPicker');
+    const colorDisplay = document.getElementById('colorDisplay');
+    const colorValue = document.getElementById('colorValue');
+    const copyButton = document.getElementById('copyButton');
+
+    colorPicker.addEventListener('input', (event) => {
+      const color = event.target.value;
+      colorValue.textContent = color;
+      colorDisplay.style.backgroundColor = color;
+      colorDisplay.style.color = getContrastYIQ(color);
+    });
+
+    copyButton.addEventListener('click', () => {
+      const color = colorValue.textContent;
+      navigator.clipboard.writeText(color).then(() => {
+        copyButton.textContent = 'Copied!';
+        setTimeout(() => {
+          copyButton.textContent = 'Copy Color';
+        }, 2000);
+      }).catch(err => {
+        console.error('Failed to copy: ', err);
+      });
+    });
+
+    function getContrastYIQ(hexcolor){
+      hexcolor = hexcolor.replace("#", "");
+      const r = parseInt(hexcolor.substr(0,2),16);
+      const g = parseInt(hexcolor.substr(2,2),16);
+      const b = parseInt(hexcolor.substr(4,2),16);
+      const yiq = ((r*299)+(g*587)+(b*114))/1000;
+      return (yiq >= 128) ? 'black' : 'white';
+    }
+  </script>
+</body>
+</html>

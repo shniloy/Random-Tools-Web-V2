@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Line Counter Online - Random Tools Web</title>
+
+<!-- Favicon -->
+<link rel="apple-touch-icon" sizes="180x180" href="../favicon-rtw/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-rtw/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-rtw/favicon-16x16.png">
+<link rel="manifest" href="../favicon-rtw/site.webmanifest">
+
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+  <!-- Header -->
+  <header class="bg-white shadow-sm border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <div class="flex items-center justify-between">
+        <a href="../index.html" class="flex items-center space-x-2 text-gray-600 hover:text-blue-600 transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+          </svg>
+          <span>Back to Home</span>
+        </a>
+        <div class="text-center">
+          <h1 class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Random Tools Web</h1>
+          <p class="text-sm text-gray-500">Line Counter</p>
+        </div>
+        <div class="w-20"></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-3xl mx-auto px-4 py-12">
+    <div class="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
+      <div class="text-center mb-8">
+        <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+          <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7h18M3 12h18M3 17h18"></path>
+          </svg>
+        </div>
+        <h2 class="text-3xl font-bold text-gray-900 mb-2">Line Counter</h2>
+        <p class="text-gray-600">Count the number of lines in your text</p>
+      </div>
+
+      <div class="space-y-4">
+        <label for="text-input" class="block text-sm font-medium text-gray-700">Your Text</label>
+        <textarea id="text-input" placeholder="Type your text here..." class="w-full h-64 px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"></textarea>
+        <div id="line-counter" class="text-right text-sm text-gray-600">Lines: 0</div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-8 mt-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <p class="text-gray-400">&copy; 2024 Random Tools Web. All rights reserved.</p>
+      <div class="mt-4">
+        <a href="../index.html" class="text-blue-400 hover:text-blue-300">← Back to Home</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+const textInput = document.getElementById('text-input');
+const lineCounter = document.getElementById('line-counter');
+textInput.addEventListener('input', updateLineCount);
+function updateLineCount() {
+  const text = textInput.value;
+  const lines = text.split('\n').length;
+  lineCounter.textContent = `Lines: ${lines}`;
+}
+  </script>
+</body>
+</html>

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Calculator - Random Tools Web</title>
+  
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon-rtw/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-rtw/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon-rtw/favicon-16x16.png">
+  <link rel="manifest" href="../favicon-rtw/site.webmanifest">
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Free online calculator with basic arithmetic operations. Simple, fast, and reliable calculator for all your mathematical needs.">
+  <meta name="keywords" content="calculator, online calculator, math calculator, arithmetic calculator, free calculator">
+  <meta name="author" content="Shoyaeb Hosen Niloy">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              200: '#bfdbfe',
+              300: '#93c5fd',
+              400: '#60a5fa',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              800: '#1e40af',
+              900: '#1e3a8a',
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <a href="../index.html" class="flex items-center space-x-2 text-gray-600 hover:text-blue-600 transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                        </svg>
+                        <span>Back to Home</span>
+                    </a>
+                </div>
+                <div class="text-center">
+                    <h1 class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                        Random Tools Web
+                    </h1>
+                    <p class="text-sm text-gray-500">Online Calculator</p>
+                </div>
+                <div class="w-20"></div> <!-- Spacer for centering -->
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-md mx-auto px-4 py-12">
+        <div class="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
+            <!-- Calculator Display -->
+            <div class="mb-6">
+                <input type="text" id="result" readonly 
+                       class="w-full p-6 text-right text-3xl font-mono bg-gray-50 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 transition-colors"
+                       placeholder="0">
+            </div>
+
+            <!-- Calculator Buttons -->
+            <div class="grid grid-cols-4 gap-4">
+                <!-- Row 1 -->
+                <button onclick="clearResult()" 
+                        class="col-span-2 bg-red-500 hover:bg-red-600 text-white font-semibold py-4 px-6 rounded-xl transition-all duration-200 transform hover:scale-105 active:scale-95">
+                    Clear
+                </button>
+                <button onclick="appendToResult('/')" 
+                        class="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-4 px-6 rounded-xl transition-all duration-200 transform hover:scale-105 active:scale-95">
+                    ÷
+                </button>
+                <button onclick="appendToResult('*')" 
+                        class="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-4 px-6 rounded-xl transition-all duration-200 transform hover:scale-105 active:scale-95">
+                    ×
+                </button>
+
+                <!-- Row 2 -->
+                <button onclick="appendToResult('7')" 
+                        class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-4 px-6 rounded-xl transition-all duration-200 transform hover:scale-105 active:scale-95">
+                    7
+                </button>
+                <button onclick="appendToResult('8')" 
+                        class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-4 px-6 rounded-xl transition-all duration-200 transform hover:scale-105 active:scale-95">
+                    8
+                </button>
+                <button onclick="appendToResult('9')" 
+                        class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-4 px-6 rounded-xl transition-all duration-200 transform hover:scale-105 active:scale-95">
+                    9
+                </button>
+                <button onclick="appendToResult('-')" 
+                        class="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-4 px-6 rounded-xl transition-all duration-200 transform hover:scale-105 active:scale-95">
+                    −
+                </button>
+
+                <!-- Row 3 -->
+                <button onclick="appendToResult('4')" 
+                        class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-4 px-6 rounded-xl transition-all duration-200 transform hover:scale-105 active:scale-95">
+                    4
+                </button>
+                <button onclick="appendToResult('5')" 
+                        class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-4 px-6 rounded-xl transition-all duration-200 transform hover:scale-105 active:scale-95">
+                    5
+                </button>
+                <button onclick="appendToResult('6')" 
+                        class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-4 px-6 rounded-xl transition-all duration-200 transform hover:scale-105 active:scale-95">
+                    6
+                </button>
+                <button onclick="appendToResult('+')" 
+                        class="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-4 px-6 rounded-xl transition-all duration-200 transform hover:scale-105 active:scale-95">
+                    +
+                </button>
+
+                <!-- Row 4 -->
+                <button onclick="appendToResult('1')" 
+                        class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-4 px-6 rounded-xl transition-all duration-200 transform hover:scale-105 active:scale-95">
+                    1
+                </button>
+                <button onclick="appendToResult('2')" 
+                        class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-4 px-6 rounded-xl transition-all duration-200 transform hover:scale-105 active:scale-95">
+                    2
+                </button>
+                <button onclick="appendToResult('3')" 
+                        class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-4 px-6 rounded-xl transition-all duration-200 transform hover:scale-105 active:scale-95">
+                    3
+                </button>
+                <button onclick="calculate()" 
+                        class="row-span-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-4 px-6 rounded-xl transition-all duration-200 transform hover:scale-105 active:scale-95">
+                    =
+                </button>
+
+                <!-- Row 5 -->
+                <button onclick="appendToResult('0')" 
+                        class="col-span-2 bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-4 px-6 rounded-xl transition-all duration-200 transform hover:scale-105 active:scale-95">
+                    0
+                </button>
+                <button onclick="appendToResult('.')" 
+                        class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-4 px-6 rounded-xl transition-all duration-200 transform hover:scale-105 active:scale-95">
+                    .
+                </button>
+            </div>
+        </div>
+
+        <!-- Features Section -->
+        <div class="mt-8 bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+            <h3 class="text-lg font-semibold text-gray-900 mb-4">Calculator Features</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-600">
+                <div class="flex items-center space-x-2">
+                    <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span>Basic arithmetic operations</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span>Decimal number support</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span>Keyboard support</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span>Mobile responsive</span>
+                </div>
+            </div>
+    </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-gray-400">
+                &copy; 2024 Random Tools Web. All rights reserved. Crafted with ❤️ by Shoyaeb Hosen Niloy.
+            </p>
+            <div class="mt-4">
+                <a href="../index.html" class="text-blue-400 hover:text-blue-300 transition-colors">
+                    ← Back to Home
+                </a>
+  </div>
+</div>
+    </footer>
+    <script>
+        // JavaScript code
+        let result = document.getElementById('result');
+
+        function appendToResult(value) {
+            if (result.value === 'Error') {
+                result.value = '';
+            }
+            result.value += value;
+        }
+
+        function calculate() {
+            try {
+                const expression = result.value.replace(/×/g, '*').replace(/÷/g, '/').replace(/−/g, '-');
+                const calculated = eval(expression);
+                result.value = calculated;
+            } catch (error) {
+                result.value = 'Error';
+            }
+        }
+
+        function clearResult() {
+            result.value = '';
+        }
+
+        // Keyboard support
+        document.addEventListener('keydown', function(event) {
+            const key = event.key;
+            
+            // Numbers and decimal point
+            if (key >= '0' && key <= '9' || key === '.') {
+                appendToResult(key);
+            }
+            // Operators
+            else if (key === '+') {
+                appendToResult('+');
+            }
+            else if (key === '-') {
+                appendToResult('−');
+            }
+            else if (key === '*') {
+                appendToResult('×');
+            }
+            else if (key === '/') {
+                event.preventDefault(); // Prevent browser search
+                appendToResult('÷');
+            }
+            // Calculate
+            else if (key === 'Enter' || key === '=') {
+                event.preventDefault();
+                calculate();
+            }
+            // Clear
+            else if (key === 'Escape' || key === 'c' || key === 'C') {
+                clearResult();
+            }
+            // Backspace
+            else if (key === 'Backspace') {
+                result.value = result.value.slice(0, -1);
+            }
+        });
+
+        // Focus the input on page load
+        window.onload = function() {
+            result.focus();
+        };
+    </script>
+</body>
+</html>
