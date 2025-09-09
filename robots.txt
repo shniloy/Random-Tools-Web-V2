@@ -1,0 +1,63 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://shniloy.github.io/Random-Tools-Web-V2/sitemap.xml
+
+# Allow all search engines to crawl all content
+Allow: /Online%20Calculators/
+Allow: /Online%20Code%20Tools/
+Allow: /Online%20Converters/
+Allow: /Online%20Text%20Tools/
+Allow: /Other%20Tools/
+Allow: /legal%20pages/
+
+# Allow access to favicon and assets
+Allow: /favicon-rtw/
+Allow: /*.ico
+Allow: /*.png
+Allow: /*.jpg
+Allow: /*.jpeg
+Allow: /*.gif
+Allow: /*.svg
+Allow: /*.webp
+Allow: /*.css
+Allow: /*.js
+Allow: /*.json
+Allow: /*.xml
+
+# Disallow access to sensitive files (if any exist)
+Disallow: /*.log
+Disallow: /*.tmp
+Disallow: /*.bak
+Disallow: /admin/
+Disallow: /private/
+Disallow: /config/
+
+# Crawl delay (optional - helps prevent server overload)
+Crawl-delay: 1
+
+# Specific instructions for major search engines
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 1
+
+User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Baiduspider
+Allow: /
+Crawl-delay: 2
+
+User-agent: YandexBot
+Allow: /
+Crawl-delay: 2
